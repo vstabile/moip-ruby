@@ -41,8 +41,10 @@ module MoIP
         body = DirectPayment.body(attributes)
         puts "************ XML ************"
         puts body
+        puts "************ Perform action ************"
         full_data = peform_action!(:post, 'EnviarInstrucao/Unica', :body => body)
-       # raise full_data.inspect
+        logger.debug "--------------!!!------ #{full_data}"
+        raise full_data.inspect
         get_response!(full_data["ns1:EnviarInstrucaoUnicaResponse"]["Resposta"])
       end
 
