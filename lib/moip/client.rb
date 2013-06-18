@@ -41,11 +41,10 @@ module MoIP
         body = DirectPayment.body(attributes)
         puts "************ XML ************"
         puts body
-        puts "************ Perform action ************"
         full_data = peform_action!(:post, 'EnviarInstrucao/Unica', :body => body)
-        logger.debug "--------------!!!------ #{full_data}"
-        raise full_data.inspect
-        get_response!(full_data["ns1:EnviarInstrucaoUnicaResponse"]["Resposta"])
+        #raise full_data.inspect
+        puts full_data.inspect
+        get_response!(full_data["EnviarInstrucaoUnicaResponse"]["Resposta"])
       end
 
       # Consulta dos dados das autorizações e pagamentos associados à Instrução
@@ -89,7 +88,7 @@ module MoIP
       end
 
       def get_response!(data)
-        # raise data.inspect
+        #raise data.inspect
         err = data["Erro"].is_a?(Array) ? data["Erro"].join(", ") : data["Erro"]
         raise(WebServerResponseError, err) if data["Status"] == "Falha"
         data
