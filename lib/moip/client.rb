@@ -33,7 +33,7 @@ module MoIP
 
       def verify account
         full_data = peform_action!(:get, "VerificarConta/#{account}")
-        return full_data["ns1:verificarContaResponse"]["RespostaVerificarConta"]["Status"] == "Verificado"
+        return full_data["verificarContaResponse"]["RespostaVerificarConta"]["Status"] == "Verificado"
       end
 
       # Envia uma instrução para pagamento único
@@ -50,8 +50,8 @@ module MoIP
       # Consulta dos dados das autorizações e pagamentos associados à Instrução
       def query(token)
         full_data = peform_action!(:get, "ConsultarInstrucao/#{token}")
-
-        get_response!(full_data["ns1:ConsultarTokenResponse"]["RespostaConsultar"])
+        return full_data["ConsultarTokenResponse"]["RespostaConsultar"]
+        #get_response!(full_data["ConsultarTokenResponse"]["RespostaConsultar"])
       end
 
       # Retorna a URL de acesso ao MoIP
