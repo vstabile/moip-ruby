@@ -159,6 +159,9 @@ module MoIP
                   xml.Instrucao1 {
                     xml.text attributes[:instrucao_1]
                   }
+                  xml.Instrucao2 {
+                    xml.text attributes[:instrucao_2]
+                  }
                   xml.URLLogo {
                     xml.text attributes[:url_logo]
                   }
